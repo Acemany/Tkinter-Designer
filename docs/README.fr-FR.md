@@ -104,5 +104,5 @@ Tkinter Designer est mis à disposition sous licence BSD 3-Clause "Nouvelle" ou 
 | --- | --- | ---
 &check; Utilisation commerciale | &times; Responsabilité | &#x1f6c8; License et Copyright
 &check; Modification   | &times; Garrantie
-&check; Distribution  
+&check; Distribution 
 &check; Utilisation privée

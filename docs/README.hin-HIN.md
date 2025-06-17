@@ -43,7 +43,7 @@ ___
 
 ### [निर्देश पढ़ें](/docs/instructions.md)
 
-### [वह वीडियो देखें](https://youtu.be/mFjE2-rbpm8)  
+### [वह वीडियो देखें](https://youtu.be/mFjE2-rbpm8) 
 
 ___
 <br>

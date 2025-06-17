@@ -74,7 +74,7 @@ Consider making a donation to the Tkinter Designer project if you or your busine
 
 ## 🔵 Discord server & Linkedin
 
-Click the button below to join the discord server or Linkedin 
+Click the button below to join the discord server or Linkedin
 
 <a href="https://discord.gg/QfE5jMXxJv" target="_blank"><img src="https://user-images.githubusercontent.com/42001064/126635148-9a736436-5a6d-4298-8d8e-acda11aec74c.png" alt="Join Discord Server" width="180px" ></a>
 <a href="https://www.linkedin.com/in/parthjadhav04" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=linkedin" alt="Connect on Linkedin" width="180px" height="58"></a>
@@ -130,14 +130,14 @@ beneficial for other people!
 ## 📄 License
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
-Tkinter Designer is licensed under the BSD 3-Clause "New" or "Revised" License.  
+Tkinter Designer is licensed under the BSD 3-Clause "New" or "Revised" License.
 [View Here.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
 
 | Permissions | Restrictions | Conditions
 | --- | --- | ---
 &check; Commercial Use | &times; Liability | &#x1f6c8; License and Copyright Notice
 &check; Modification   | &times; Warranty
-&check; Distribution  
+&check; Distribution
 &check; Private Use
 
 ## Contribute

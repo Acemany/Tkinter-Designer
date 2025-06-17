@@ -1,18 +1,17 @@
-from .node import Node
+from typing import Any
+
+from tkdesigner.figma.node import Node
 
 
 class Vector(Node):
-    def __init__(self, node):
-        super().__init__(node)
-
     def color(self) -> str:
-        """Returns HEX form of element RGB color (str)
-        """
+        """Returns HEX form of element RGB color (str)"""
         try:
             color = self.node["fills"][0]["color"]
             r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
             return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
+        except Exception as e:
+            raise e from e
             return "#FFFFFF"
 
     def size(self):
@@ -21,7 +20,7 @@ class Vector(Node):
         height = bbox["height"]
         return width, height
 
-    def position(self, frame):
+    def position(self, frame: Node):
         # Returns element coordinates as x (int) and y (int)
         bbox = self.node["absoluteBoundingBox"]
         x = bbox["x"]
@@ -37,21 +36,19 @@ class Vector(Node):
 
 
 class Star(Vector):
-    def __init__(self, node):
-        super().__init__(node)
+    pass
+
 
 class Ellipse(Vector):
-    def __init__(self, node):
-        super().__init__(node)
+    pass
 
 
 class RegularPolygon(Vector):
-    def __init__(self, node):
-        super().__init__(node)
+    pass
 
 
 class Rectangle(Vector):
-    def __init__(self, node, frame):
+    def __init__(self, node: dict[str, Any], frame: Node):
         super().__init__(node)
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()
@@ -78,30 +75,27 @@ canvas.create_rectangle(
 
 
 class Line(Rectangle):
-    def __init__(self, node, frame):
-        super().__init__(node, frame)
-
     def color(self) -> str:
-        """Returns HEX form of element RGB color (str)
-        """
+        """Returns HEX form of element RGB color (str)"""
         try:
             color = self.node["strokes"][0]["color"]
             r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
             return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
+        except Exception as e:
+            raise e from e
             return "#FFFFFF"
 
     def size(self):
         width, height = super().size()
         return width + self.node["strokeWeight"], height + self.node["strokeWeight"]
 
-    def position(self, frame):
+    def position(self, frame: Node):
         x, y = super().position(frame)
         return x - self.node["strokeWeight"], y - self.node["strokeWeight"]
 
 
 class UnknownElement(Vector):
-    def __init__(self, node, frame):
+    def __init__(self, node: dict[str, Any], frame: Node):
         super().__init__(node)
         self.x, self.y = self.position(frame)
         self.width, self.height = self.size()

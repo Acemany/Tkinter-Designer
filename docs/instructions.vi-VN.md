@@ -38,8 +38,8 @@ ___
 
 ## 1. Install Python
 
-Trước khi sử dụng Tkinter Designer, bạn sẽ cần cài đặt Python.  
-- [Bấm vào đây để đến trang tải xuống Python](https://www.python.org/downloads)  
+Trước khi sử dụng Tkinter Designer, bạn sẽ cần cài đặt Python. 
+- [Bấm vào đây để đến trang tải xuống Python](https://www.python.org/downloads) 
 - [Đây là hướng dẫn cho các hệ điều hành](https://wiki.python.org/moin/BeginnersGuide/Download)
 
 *Trong hướng dẫn này, bạn sẽ sử dụng Trình cài đặt Gói cho Python (pip), điều này có thể đòi hỏi bạn phải thêm Python vào PATH của hệ thống.

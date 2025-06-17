@@ -29,7 +29,7 @@ ___
 ## 1. Installer Python
 
 Avant d'utiliser Tkinter Designer, vous devez installer Python.
-- [Voici un lien vers la page de téléchargement de Python.](https://www.python.org/downloads)  
+- [Voici un lien vers la page de téléchargement de Python.](https://www.python.org/downloads)
 - [Voici un guide utile pour installer Python sur divers systèmes d'exploitation.](https://wiki.python.org/moin/BeginnersGuide/Download)
 
 *Plus loin dans ce guide, vous utiliserez le programme d'installation de packages pour Python (pip), ce qui peut vous obliger à ajouter Python à votre PATH système.*
@@ -61,7 +61,7 @@ Dans la barre latérale de droite, cliquez sur la dernière version et, sous **A
      - `python -m pip install -r requirements.txt`
      - `python3 -m pip install -r requirements.txt`
    - Si cela ne fonctionne toujours pas, assurez-vous que Python est ajouté au PATH.
-  
+
 Cela installera toutes les exigences et Tkinter Designer. Avant d'utiliser Tkinter Designer, vous devez créer un fichier Figma avec les instructions ci-dessous.
 
 Si vous avez déjà créé un fichier, passez à la section [**Utilisation de Tkinter Designer**](#Using-Tkinter-Designer).

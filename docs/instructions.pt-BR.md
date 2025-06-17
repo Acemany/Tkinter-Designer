@@ -28,8 +28,8 @@ ___
 
 ## 1. Instalando Python
 
-Antes de usar o Tkinter Designer, você precisará instalar o Python.  
-- [Aqui está um link para a página de downloads do Python.](https://www.python.org/downloads)  
+Antes de usar o Tkinter Designer, você precisará instalar o Python. 
+- [Aqui está um link para a página de downloads do Python.](https://www.python.org/downloads) 
 - [Aqui está um guia útil para instalar o Python em vários sistemas operacionais.](https://wiki.python.org/moin/BeginnersGuide/Download)
 
 *Mais adiante neste guia, você usará o Package Installer for Python (pip), que pode exigir que você adicione o Python ao PATH do seu sistema.*

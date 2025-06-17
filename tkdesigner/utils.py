@@ -1,12 +1,18 @@
-"""
-Small utility functions.
-"""
+"""Small utility functions."""
+
+from io import BytesIO
+from pathlib import Path
+from typing import Any
+
 import requests
 from PIL import Image
-import io
 
 
-def find_between(s, first, last):
+def woah(msg: str) -> Any:
+    raise ValueError(msg)
+
+
+def find_between(s: str, first: str, last: str):
     try:
         start = s.index(first) + len(first)
         end = s.index(last, start)
@@ -16,10 +22,10 @@ def find_between(s, first, last):
         return ""
 
 
-def download_image(url, image_path):
-    response = requests.get(url)
-    content = io.BytesIO(response.content)
+def download_image(url: str, image_path: Path):
+    response = requests.get(url, timeout=5000)
+    content = BytesIO(response.content)
     im = Image.open(content)
-    im = im.resize((im.size[0] // 2, im.size[1] // 2), Image.LANCZOS)
+    im = im.resize((im.size[0] // 2, im.size[1] // 2), Image.Resampling.LANCZOS)
     with open(image_path, "wb") as file:
         im.save(file)

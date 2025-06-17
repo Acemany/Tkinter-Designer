@@ -97,20 +97,20 @@ As possibilidades são muitas com Tkinter Designer, mas aqui estão algumas inte
 
 ## 🔥 Casos de sucesso
 
-Se você tiver um app que foi feito com Tkinter Designer, contate-me. Isso pode ajudar outras pessoas, pessoas podem ficar interessadas ao ver esses exemplos!  
+Se você tiver um app que foi feito com Tkinter Designer, contate-me. Isso pode ajudar outras pessoas, pessoas podem ficar interessadas ao ver esses exemplos! 
 (Veja: [Contate-me](#-contate-me)) ou utilize [Mostrar e Contar](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell).
 
 ## 📄 Licença
 <!--- Se você não sabe muito sobre essa licença de código-aberto saiba aqui: https://choosealicense.com/--->
 
-Tkinter Designer é licenciado através da licença BSD 3-Clause "New" ou "Revised".  
+Tkinter Designer é licenciado através da licença BSD 3-Clause "New" ou "Revised". 
 [Visualize Aqui.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
 
 | Permissões | Restrições | Condições
 | --- | --- | ---
 &check; Uso Comercial | &times; Responsabilidade | &#x1f6c8; Licença e Notificação de Copyright
 &check; Modificação   | &times; Garantia
-&check; Distribuição  
+&check; Distribuição 
 &check; Uso Privado
 
 ## 📝 Contate-me

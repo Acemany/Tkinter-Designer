@@ -11,7 +11,7 @@ Have we made a huge mistake? If so, open an issue and let us know!
 3. `poetry config repositories.testpypi https://test.pypi.org/legacy/`
 4. `poetry version $VERSION` - bump the version number to the value of <$VERSION>
 5. `poetry publish --build -r testpypi -u __token__ -p $TESTPYPI_TOKEN`
-  
+
 
 ## Packaging [deprecated in Tkinter-Designer as of 1.0.100]
 

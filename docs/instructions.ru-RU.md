@@ -256,7 +256,7 @@ python3 gui.py
 
 1. Откройте графический интерфейс TKinter Designer с помощью
 
-```bash 
+```bash
 cd Tkinter-Designer
 cd gui
 python3 gui.py

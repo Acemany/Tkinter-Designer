@@ -109,7 +109,7 @@ Eğer benimle iletişime geçmek istiyorsanız bana Jadhavparth99@gmail.com mail
 
 <!--- If you're not sure which open license to use see https://choosealicense.com/--->
 
-Tkinter Designer BSD 3-Clause "Yeni" ya da "Revize Edilmiş" Lisansı ile lisanslanmıştır.  
+Tkinter Designer BSD 3-Clause "Yeni" ya da "Revize Edilmiş" Lisansı ile lisanslanmıştır. 
 [Burdan](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE) ulaşabilirsiniz.
 
 | İzinler                 | Kısıtlamalar        | Şartlar                                   |

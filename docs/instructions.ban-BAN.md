@@ -11,7 +11,7 @@
 3. `poetry config repositories.testpypi https://test.pypi.org/legacy/`
 4. `poetry version $VERSION` - সংস্করণ নম্বরটিকে <$VERSION>-এর মানের সাথে বাম্প করুন
 5. `poetry publish --build -r testpypi -u __token__ -p $TESTPYPI_TOKEN`
-  
+
 
 ## প্যাকেজিং [1.0.100 অনুযায়ী টিকিন্টার-ডিজাইনার-এ অবচয়িত]
 

@@ -1,18 +1,18 @@
+from typing import Any
 import webbrowser
 import re
 import sys
 import os
-import  tkinter as tk
-import tkinter.messagebox as tk1
-import tkinter.filedialog
+import tkinter as tk
+from tkinter import Misc, messagebox, filedialog
 from pathlib import Path
 
 # Add tkdesigner to path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 try:
     from tkdesigner.designer import Designer
-except ModuleNotFoundError:
-    raise RuntimeError("Couldn't add tkdesigner to the PATH.")
+except ModuleNotFoundError as e:
+    raise RuntimeError("Couldn't add tkdesigner to the PATH.") from e
 
 
 # Path to asset files for this GUI window.
@@ -22,8 +22,6 @@ ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 path = getattr(sys, '_MEIPASS', os.getcwd())
 os.chdir(path)
 
-output_path = ""
-
 
 def btn_clicked():
     token = token_entry.get()
@@ -32,22 +30,22 @@ def btn_clicked():
     output_path = output_path.strip()
 
     if not token:
-        tk.messagebox.showerror(
+        messagebox.showerror(  # type: ignore
             title="Empty Fields!", message="Please enter Token.")
         return
     if not URL:
-        tk.messagebox.showerror(
+        messagebox.showerror(  # type: ignore
             title="Empty Fields!", message="Please enter URL.")
         return
     if not output_path:
-        tk.messagebox.showerror(
+        messagebox.showerror(  # type: ignore
             title="Invalid Path!", message="Enter a valid output path.")
         return
 
     match = re.search(
         r'https://www.figma.com/(file|design)/([0-9A-Za-z]+)', URL.strip())
     if match is None:
-        tk.messagebox.showerror(
+        messagebox.showerror(  # type: ignore
             "Invalid URL!", "Please enter a valid file URL.")
         return
 
@@ -56,12 +54,12 @@ def btn_clicked():
     output = Path(f"{output_path}/build").expanduser().resolve()
 
     if output.exists() and not output.is_dir():
-        tk1.showerror(
+        messagebox.showerror(  # type: ignore
             "Exists!",
             f"{output} already exists and is not a directory.\n"
             "Enter a valid output directory.")
     elif output.exists() and output.is_dir() and tuple(output.glob('*')):
-        response = tk1.askyesno(
+        response = messagebox.askyesno(  # type: ignore
             "Continue?",
             f"Directory {output} is not empty.\n"
             "Do you want to continue and overwrite?")
@@ -71,28 +69,26 @@ def btn_clicked():
     designer = Designer(token, file_key, output)
     designer.design()
 
-    tk.messagebox.showinfo(
+    messagebox.showinfo(  # type: ignore
         "Success!", f"Project successfully generated at {output}.")
 
 
 def select_path():
-    global output_path
-
-    output_path = tk.filedialog.askdirectory()
+    output_path = filedialog.askdirectory()
     path_entry.delete(0, tk.END)
     path_entry.insert(0, output_path)
 
 
-def know_more_clicked(event):
+def know_more_clicked(event: Any):
     instructions = (
         "https://github.com/ParthJadhav/Tkinter-Designer/"
         "blob/master/docs/instructions.md")
     webbrowser.open_new_tab(instructions)
 
 
-def make_label(master, x, y, h, w, *args, **kwargs):
+def make_label(master: Misc | None, x: int, y: int, h: int, w: int, *args: Any, **kwargs: Any):
     f = tk.Frame(master, height=h, width=w)
-    f.pack_propagate(0)  # don't shrink
+    f.pack_propagate(False)  # don't shrink
     f.place(x=x, y=y)
 
     label = tk.Label(f, *args, **kwargs)
@@ -103,7 +99,7 @@ def make_label(master, x, y, h, w, *args, **kwargs):
 
 window = tk.Tk()
 logo = tk.PhotoImage(file=ASSETS_PATH / "iconbitmap.gif")
-window.call('wm', 'iconphoto', window._w, logo)
+window.wm_iconphoto(False, logo)
 window.title("Tkinter Designer")
 
 window.geometry("862x519")
@@ -115,11 +111,11 @@ canvas.place(x=0, y=0)
 canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC", outline="")
 
 text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
-token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)
-URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)
-filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)
+token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)  # type: ignore
+URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)  # type: ignore
+filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)  # type: ignore
 
-token_entry = tk.Entry(bd=0, bg="#F6F7F9",fg="#000716",  highlightthickness=0)
+token_entry = tk.Entry(bd=0, bg="#F6F7F9", fg="#000716",  highlightthickness=0)
 token_entry.place(x=490.0, y=137+25, width=321.0, height=35)
 token_entry.focus()
 
@@ -163,7 +159,7 @@ canvas.create_text(
 
 title = tk.Label(
     text="Welcome to Tkinter Designer", bg="#3A7FF6",
-    fg="white",justify="left", font=("Arial-BoldMT", int(20.0)))
+    fg="white", justify="left", font=("Arial-BoldMT", int(20.0)))
 title.place(x=20.0, y=120.0)
 canvas.create_rectangle(25, 160, 33 + 60, 160 + 5, fill="#FCFCFC", outline="")
 
@@ -182,7 +178,7 @@ info_text.place(x=20.0, y=200.0)
 
 know_more = tk.Label(
     text="Click here for instructions",
-    bg="#3A7FF6", fg="white",justify="left", cursor="hand2")
+    bg="#3A7FF6", fg="white", justify="left", cursor="hand2")
 know_more.place(x=20, y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 

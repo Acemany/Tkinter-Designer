@@ -29,7 +29,7 @@ ___
 ## 1. Python'u Kurun
 
 Tkinter Designer'ı kullanmaya başlamadan önce Python'u kurmanız gerekmektedir.
-- [Python'u burdan indirebilirsiniz.](https://www.python.org/downloads)  
+- [Python'u burdan indirebilirsiniz.](https://www.python.org/downloads) 
 - [Burda ise Python'u çeşitli işletim sistemlerine indirmeye yarayacak bir rehber var.](https://wiki.python.org/moin/BeginnersGuide/Download)
 
 *Bu rehberden sonra Python'un paket yükleyicisi olan "pip"i kullanacaksınız, bu yüzden Python'u sistem yoluna eklemeniz gerekebilir.*

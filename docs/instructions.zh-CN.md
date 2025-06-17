@@ -29,7 +29,7 @@ ___
 ## 1.安装Python
 
 在使用 Tkinter Designer 之前，您需要安装 Python。
-- [这是 Python 下载页面的链接。](https://www.python.org/downloads)  
+- [这是 Python 下载页面的链接。](https://www.python.org/downloads) 
 - [这是在各种操作系统上安装 Python 的有用指南。](https://wiki.python.org/moin/BeginnersGuide/Download)
 
 *在本指南的后面部分，您将使用 Python 包安装程序 (pip)，这可能需要您将 Python 添加到系统 PATH 中。*
@@ -66,7 +66,7 @@ ___
       - `python -m pip install -r requirements.txt`
       - `python3 -m pip install -r requirements.txt`
     - 如果这仍然不起作用，请确保将 Python 添加到 PATH。
-  
+ 
    这将安装所有要求和 Tkinter Designer。 在使用 Tkinter Designer 之前，您需要按照以下说明创建 Figma 文件。
 
    如果您已经创建了文件，请跳至 [**Using Tkinter Designer**](#使用-Tkinter-Designer) 部分。

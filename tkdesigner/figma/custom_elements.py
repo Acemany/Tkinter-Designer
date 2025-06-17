@@ -1,14 +1,19 @@
-from .vector_elements import Vector, Rectangle
+from pathlib import Path
+from typing import Any
+
+from tkdesigner.figma.node import Node
+from tkdesigner.figma.vector_elements import Vector, Rectangle
+from tkdesigner.utils import woah
 
 TEXT_INPUT_ELEMENT_TYPES = {
     "TextArea": "Text",
     "TextBox": "Entry"
 }
-position_id_map ={}
+position_id_map: dict[tuple[int, int], str] = {}
 
 
 class Button(Rectangle):
-    def __init__(self, node, frame, image_path, *, id_):
+    def __init__(self, node: dict[str, Any], frame: Node, image_path: Path, *, id_: str):
         super().__init__(node, frame)
         self.image_path = image_path
         self.id_ = id_
@@ -33,21 +38,21 @@ button_{self.id_}.place(
 )
 """
 
-#EXPERIMENTAL FEATURE
+
+# EXPERIMENTAL FEATURE
 class ButtonHover(Rectangle):
-    def __init__(self, node, frame, image_path):
+    def __init__(self, node: dict[str, Any], frame: Node, image_path: Path):
         super().__init__(node, frame)
         self.image_path = image_path
 
-        if((self.x, self.y) in position_id_map):
+        if (self.x, self.y) in position_id_map:
             self.id_ = position_id_map[(self.x, self.y)]
         else:
-            print(
-                f"`ButtonHover` element must be placed on top of Button element with the same position.\n"
-                "`ButtonHover` element will not be rendered") 
+            print("`ButtonHover` element must be placed on top of Button element with the same position.\n"
+                  "`ButtonHover` element will not be rendered")
 
     def to_code(self):
-        if((self.x, self.y) in position_id_map):
+        if (self.x, self.y) in position_id_map:
             return f"""
 button_image_hover_{self.id_} = PhotoImage(
     file=relative_to_assets("{self.image_path}"))
@@ -65,12 +70,11 @@ button_{self.id_}.bind('<Enter>', button_{self.id_}_hover)
 button_{self.id_}.bind('<Leave>', button_{self.id_}_leave)
 
 """
-        else:
-            return ""
+        return ""
 
 
 class Text(Vector):
-    def __init__(self, node, frame):
+    def __init__(self, node: dict[str, Any], frame: Node):
         super().__init__(node)
 
         self.x, self.y = self.position(frame)
@@ -82,7 +86,7 @@ class Text(Vector):
 
     @property
     def characters(self) -> str:
-        string: str = self.node.get("characters")
+        string: str = self.node.get("characters", woah('No characters were found'))
         text_case: str = self.style.get("textCase", "ORIGINAL")
 
         if text_case == "UPPER":
@@ -95,9 +99,9 @@ class Text(Vector):
         return string
 
     @property
-    def style(self):
+    def style(self) -> dict[str, Any]:
         # TODO: Native conversion
-        return self.node.get("style")
+        return self.node.get("style", woah('You got no style'))
 
     @property
     def character_style_overrides(self):
@@ -108,8 +112,8 @@ class Text(Vector):
         # TODO: Native conversion
         return self.node.get("styleOverrideTable")
 
-    def font_property(self):
-        style = self.node.get("style")
+    def font_property(self) -> tuple[str, float]:
+        style = self.node.get("style", woah('You got no style'))
 
         font_name = style.get("fontPostScriptName")
         if font_name is None:
@@ -133,7 +137,7 @@ canvas.create_text(
 
 
 class Image(Vector):
-    def __init__(self, node, frame, image_path, *, id_):
+    def __init__(self, node: dict[str, Any], frame: Node, image_path: Path, *, id_: str):
         super().__init__(node)
 
         self.x, self.y = self.position(frame)
@@ -158,7 +162,7 @@ image_{self.id_} = canvas.create_image(
 
 
 class TextEntry(Vector):
-    def __init__(self, node, frame, image_path, *, id_):
+    def __init__(self, node: dict[str, Any], frame: Node, image_path: Path, *, id_: str):
         super().__init__(node)
 
         self.id_ = id_
@@ -179,7 +183,7 @@ class TextEntry(Vector):
         self.entry_x, self.entry_y = self.position(frame)
         self.entry_x += corner_radius
 
-        self.entry_type = TEXT_INPUT_ELEMENT_TYPES.get(self.get("name"))
+        self.entry_type = TEXT_INPUT_ELEMENT_TYPES.get(self.name)
 
     def to_code(self):
         return f"""

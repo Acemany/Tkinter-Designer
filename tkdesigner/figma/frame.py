@@ -1,22 +1,25 @@
-from ..constants import ASSETS_PATH
-from ..utils import download_image
-
-from .node import Node
-from .vector_elements import Line, Rectangle, UnknownElement
-from .custom_elements import Button, Text, Image, TextEntry, ButtonHover
+from typing import Any
+from pathlib import Path
 
 from jinja2 import Template
-from pathlib import Path
+
+from tkdesigner.constants import ASSETS_PATH
+from tkdesigner.figma.endpoints import Files
+from tkdesigner.utils import download_image, woah
+
+from tkdesigner.figma.node import Node
+from tkdesigner.figma.vector_elements import Line, Rectangle, UnknownElement
+from tkdesigner.figma.custom_elements import Button, Text, Image, TextEntry, ButtonHover
 
 
 class Frame(Node):
-    def __init__(self, node, figma_file, output_path, frameCount=0):
+    def __init__(self, node: dict[str, Any], figma_file: Files, output_path: Path, frameCount: int = 0):
         super().__init__(node)
 
         self.width, self.height = self.size()
         self.bg_color = self.color()
 
-        self.counter = {}
+        self.counter: dict[type[Button | ButtonHover | Image | TextEntry], int] = {}
 
         self.figma_file = figma_file
 
@@ -32,9 +35,9 @@ class Frame(Node):
             if Node(child).visible
         ]
 
-    def create_element(self, element):
-        element_name = element["name"].strip().lower()
-        element_type = element["type"].strip().lower()
+    def create_element(self, element: dict[str, Any]):
+        element_name: str = element["name"].strip().lower()
+        element_type: str = element["type"].strip().lower()
 
         print(
             "Creating Element "
@@ -55,8 +58,8 @@ class Frame(Node):
             return Button(
                 element, self, image_path, id_=f"{self.counter[Button]}")
 
-        #EXPERIMENTAL FEATURE 
-        elif element_name == "buttonhover":
+        # EXPERIMENTAL FEATURE
+        if element_name == "buttonhover":
             self.counter[ButtonHover] = self.counter.get(ButtonHover, 0) + 1
 
             item_id = element["id"]
@@ -70,7 +73,7 @@ class Frame(Node):
             return ButtonHover(
                 element, self, image_path)
 
-        elif element_name in ("textbox", "textarea"):
+        if element_name in ("textbox", "textarea"):
             self.counter[TextEntry] = self.counter.get(TextEntry, 0) + 1
 
             item_id = element["id"]
@@ -84,7 +87,7 @@ class Frame(Node):
             return TextEntry(
                 element, self, image_path, id_=f"{self.counter[TextEntry]}")
 
-        elif element_name == "image":
+        if element_name == "image":
             self.counter[Image] = self.counter.get(Image, 0) + 1
 
             item_id = element["id"]
@@ -103,39 +106,37 @@ class Frame(Node):
         if element_name == "line" or element_type == "line":
             return Line(element, self)
 
-        elif element_type == "text":
+        if element_type == "text":
             return Text(element, self)
 
-        else:
-            print(
-                f"Element with the name: `{element_name}` cannot be parsed. "
-                "Would be displayed as Black Rectangle")
-            return UnknownElement(element, self)
+        print(
+            f"Element with the name: `{element_name}` cannot be parsed. "
+            "Would be displayed as Black Rectangle")
+        return UnknownElement(element, self)
 
     @property
-    def children(self):
+    def children(self) -> list[dict[str, Any]]:
         # TODO: Convert nodes to Node objects before returning a list of them.
-        return self.node.get("children")
+        return self.node.get("children", woah('No childs here'))
 
     def color(self) -> str:
-        """Returns HEX form of element RGB color (str)
-        """
+        """Returns HEX form of element RGB color (str)"""
         try:
             color = self.node["fills"][0]["color"]
             r, g, b, *_ = [int(color.get(i, 0) * 255) for i in "rgba"]
             return f"#{r:02X}{g:02X}{b:02X}"
-        except Exception:
+        except Exception as e:
+            raise e from e
             return "#FFFFFF"
 
-    def size(self) -> tuple:
-        """Returns element dimensions as width (int) and height (int)
-        """
+    def size(self) -> tuple[int, int]:
+        """Returns element dimensions as width (int) and height (int)"""
         bbox = self.node["absoluteBoundingBox"]
         width = bbox["width"]
         height = bbox["height"]
         return int(width), int(height)
 
-    def to_code(self, template):
+    def to_code(self, template: str) -> str:
         t = Template(template)
         return t.render(
             window=self, elements=self.elements, assets_path=self.assets_path)
@@ -145,24 +146,18 @@ class Frame(Node):
 
 
 class Group(Frame):
-    def __init__(self, node):
-        super().__init__(node)
+    pass
 
 
 class Component(Frame):
-    def __init__(self, node):
-        super().__init__(node)
+    pass
 
 
 class ComponentSet(Frame):
-    def __init__(self, node):
-        super().__init__(node)
+    pass
 
 
 class Instance(Frame):
-    def __init__(self, node):
-        super().__init__(node)
-
     @property
     def component_id(self) -> str:
-        self.node.get("componentId")
+        return self.node.get("componentId", woah('No componentId'))

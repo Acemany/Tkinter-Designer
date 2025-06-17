@@ -83,19 +83,19 @@ Las posibilidades son infinitas con Tkinter Designer, pero aquí hay algunas GUI
 
 ## 🔥 Casos de Éxito
 
-Si tu app fue creada con Tkinter Designer, hazmelo saber. Ésto será de ayuda para otros al ver más ejemplos! 
+Si tu app fue creada con Tkinter Designer, hazmelo saber. Ésto será de ayuda para otros al ver más ejemplos!
 (Ve: [Contáctame](#-contact-me)) o usa las secciones [Show and Tell](https://github.com/ParthJadhav/Tkinter-Designer/discussions/categories/show-and-tell).
 
 ## 📄 Licencia
 <!--- Si no estás seguro de que licencia abierta usar, mira https://choosealicense.com/--->
 
-Tkinter Designer está bajo la licencia de BSD 3-Clause "New" o "Revised".  
+Tkinter Designer está bajo la licencia de BSD 3-Clause "New" o "Revised". 
 [Ver Aquí.](https://github.com/ParthJadhav/Tkinter-Designer/blob/master/LICENSE)
 
 | Permisos | Restricciones | Condiciones
 | --- | --- | ---
 &check; Uso Comercial | &times; Responsabilidad | &#x1f6c8; Licencia y Notificación de Copyright
 &check; Modificación   | &times; Garantía
-&check; Distribución  
+&check; Distribución 
 &check; Uso Privado
 

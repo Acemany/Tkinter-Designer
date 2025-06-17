@@ -1,24 +1,28 @@
+from typing import Any
+
+from tkdesigner.utils import woah
+
+
 class Node:
-    def __init__(self, node: dict):
+    def __init__(self, node: dict[str, Any]):
         self.node = node
 
     @property
     def id(self) -> str:
-        return self.node.get("id")
+        return self.node.get("id", woah('No id?!'))
 
     @property
     def name(self) -> str:
-        return self.node.get("name")
+        return self.node.get("name", woah('No name?!'))
 
     @property
     def visible(self) -> bool:
-        """Whether or not the node is visible on the canvas.
-        """
+        """Whether or not the node is visible on the canvas."""
         return self.node.get("visible", True)
 
     @property
     def type(self) -> str:
-        return self.node.get("type")
+        return self.node.get("type", woah('No type??!'))
 
     @property
     def plugin_data(self):
@@ -28,25 +32,22 @@ class Node:
     def shared_plugin_data(self):
         return self.node.get("sharedPluginData")
 
-    def get(self, key, default=None):
+    def get(self, key: str, default: Any | None = None):
         return self.node.get(key, default)
 
 
 class Document(Node):
-    def __init__(self, node, root="window"):
+    def __init__(self, node: dict[str, Any], root: str = "window"):
         super().__init__(node)
         self.root = root
 
     @property
-    def children(self):
+    def children(self) -> list[dict[str, Any]]:
         # TODO: Convert nodes to Node objects before returning a list of them.
-        return self.node.get("children")
+        return self.node.get("children", woah('No childs :)'))
 
 
 class Canvas(Node):
-    def __init__(self, node):
-        super().__init__(node)
-
     @property
     def children(self):
         # TODO: Convert nodes to Node objects before returning a list of them.
@@ -58,7 +59,7 @@ class Canvas(Node):
 
     @property
     def prototype_start_node_id(self) -> str:
-        return self.node.get("prototypeStartNodeID")
+        return self.node.get("prototypeStartNodeID", woah('No `PrototypeStartNodeId`... Whats that'))
 
     @property
     def export_settings(self):
@@ -69,9 +70,6 @@ class Canvas(Node):
 
 
 class Slice(Node):
-    def __init__(self, node):
-        super().__init__(node)
-
     @property
     def export_settings(self):
         # TODO: Native conversion

@@ -141,7 +141,7 @@ def write_text(self, data, encoding=None, errors=None, newline=None):
             return f.write(data)
 
 def design(self):
-        code = self.to_code() #Code is the converted Tkinter code. 
+        code = self.to_code() #Code is the converted Tkinter code.
         self.output_path.joinpath(CODE_FILE_NAME).write_text(code)
 ```
 
