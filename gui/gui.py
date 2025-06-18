@@ -16,7 +16,7 @@ except ModuleNotFoundError as e:
 
 
 # Path to asset files for this GUI window.
-ASSETS_PATH = Path(__file__).resolve().parent / "assets"
+ASSETS_PATH = Path(__file__).resolve().parent/"assets"
 
 # Required in order to add data files to Windows executable
 path = getattr(sys, '_MEIPASS', os.getcwd())
@@ -26,8 +26,7 @@ os.chdir(path)
 def btn_clicked():
     token = token_entry.get()
     URL = URL_entry.get()
-    output_path = path_entry.get()
-    output_path = output_path.strip()
+    output_path = path_entry.get().strip()
 
     if not token:
         messagebox.showerror(  # type: ignore
@@ -98,7 +97,7 @@ def make_label(master: Misc | None, x: int, y: int, h: int, w: int, *args: Any, 
 
 
 window = tk.Tk()
-logo = tk.PhotoImage(file=ASSETS_PATH / "iconbitmap.gif")
+logo = tk.PhotoImage(file=ASSETS_PATH/"iconbitmap.gif")
 window.wm_iconphoto(False, logo)
 window.title("Tkinter Designer")
 
@@ -110,7 +109,7 @@ canvas = tk.Canvas(
 canvas.place(x=0, y=0)
 canvas.create_rectangle(431, 0, 431 + 431, 0 + 519, fill="#FCFCFC", outline="")
 
-text_box_bg = tk.PhotoImage(file=ASSETS_PATH / "TextBox_Bg.png")
+text_box_bg = tk.PhotoImage(file=ASSETS_PATH/"TextBox_Bg.png")
 token_entry_img = canvas.create_image(650.5, 167.5, image=text_box_bg)  # type: ignore
 URL_entry_img = canvas.create_image(650.5, 248.5, image=text_box_bg)  # type: ignore
 filePath_entry_img = canvas.create_image(650.5, 329.5, image=text_box_bg)  # type: ignore
@@ -125,7 +124,7 @@ URL_entry.place(x=490.0, y=218+25, width=321.0, height=35)
 path_entry = tk.Entry(bd=0, bg="#F6F7F9", fg="#000716", highlightthickness=0)
 path_entry.place(x=490.0, y=299+25, width=321.0, height=35)
 
-path_picker_img = tk.PhotoImage(file = ASSETS_PATH / "path_picker.png")
+path_picker_img = tk.PhotoImage(file = ASSETS_PATH/"path_picker.png")
 path_picker_button = tk.Button(
     image = path_picker_img,
     text = '',
@@ -182,7 +181,7 @@ know_more = tk.Label(
 know_more.place(x=20, y=400)
 know_more.bind('<Button-1>', know_more_clicked)
 
-generate_btn_img = tk.PhotoImage(file=ASSETS_PATH / "generate.png")
+generate_btn_img = tk.PhotoImage(file=ASSETS_PATH/"generate.png")
 generate_btn = tk.Button(
     image=generate_btn_img, borderwidth=0, highlightthickness=0,
     command=btn_clicked, relief="flat")
